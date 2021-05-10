@@ -1,0 +1,39 @@
+<template>
+  <lightning-card title=" Exchange Rates">
+    <div class="slds-form_horizontal slds-grid slds-wrap">
+      <lightning-input
+        placeholder="Enter Currency Code "
+        onchange={inputCurrencyCode}
+      >
+      </lightning-input>
+      <lightning-button label="Get All Currency Codes " onclick={getAllRates}>
+      </lightning-button>
+    </div>
+    <template if:true={filteredList}>
+      <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+          <tr class>
+            <th scope="col">
+              <div title="Key">Currency Codes</div>
+            </th>
+            <th scope="col">
+              <div title="Value">Currency Rates</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <template for:each={filteredList} for:item="keyValue">
+            <tr key={keyValue.key}>
+              <th scope="col">
+                <div>{keyValue.key}</div>
+              </th>
+              <th scope="col">
+                <div>{keyValue.value}</div>
+              </th>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </template>
+  </lightning-card>
+</template>
